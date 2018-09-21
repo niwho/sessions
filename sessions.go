@@ -41,6 +41,22 @@ type Session struct {
 	name    string
 }
 
+func (s *Session) GetString(itemKey string) (string, bool) {
+	if val, ok := s.Values[itemKey]; ok {
+		valstr, ok := val.(string)
+		return valstr, ok
+	}
+	return "", false
+}
+
+func (s *Session) GetInt(itemKey string) (int, bool) {
+	if val, ok := s.Values[itemKey]; ok {
+		valstr, ok := val.(int)
+		return valstr, ok
+	}
+	return 0, false
+}
+
 // Flashes returns a slice of flash messages from the session.
 //
 // A single variadic argument is accepted, and it is optional: it defines
